@@ -1,7 +1,7 @@
 # Moon Plugin Sample - Plugin Development
 
-<span class="badge-npmversion"><a href="https://npmjs.org/package/@moonjot/moon-sample-plugin" title="View this project on NPM"><img src="https://img.shields.io/npm/v/@moonjot/moon-sample-plugin.svg" alt="NPM version" /></a></span>
-<span class="badge-npmdownloads"><a href="https://npmjs.org/package/@moonjot/moon-sample-plugin" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/@moonjot/moon-sample-plugin.svg" alt="NPM downloads" /></a></span>
+<span class="badge-npmversion"><a href="https://npmjs.org/package/@moonjot/moon-ai-prompt-plugin" title="View this project on NPM"><img src="https://img.shields.io/npm/v/@moonjot/moon-ai-prompt-plugin.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/@moonjot/moon-ai-prompt-plugin" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/@moonjot/moon-ai-prompt-plugin.svg" alt="NPM downloads" /></a></span>
 
 
 Moon Jot is base on a plugin system that make easy to develop your own integration and workflows

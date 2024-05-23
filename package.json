@@ -1,14 +1,14 @@
 {
-  "name": "@moonjot/moon-sample-plugin",
-  "version": "0.0.0",
+  "name": "@moonjot/moon-ai-prompt-plugin",
+  "version": "0.0.1",
   "description": "Moon sample plugin for Moon",
   "main": "./dist/index.js",
   "dependencies": {
-    "@moonjot/moon": "^0.1.72"
+    "@moonjot/moon": "^0.1.85"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/castroCrea/moon-sample-plugin"
+    "url": "https://github.com/castroCrea/moon-ai-prompt-plugin"
   },
   "types": "./dist/index.d.ts",
   "scripts": {

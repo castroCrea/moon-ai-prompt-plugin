@@ -58,10 +58,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.2.tgz#d9fae00a2d5cb40f92cfe64b47ad749fbc38f917"
   integrity sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==
 
-"@moonjot/moon@^0.1.72":
-  version "0.1.72"
-  resolved "https://registry.yarnpkg.com/@moonjot/moon/-/moon-0.1.72.tgz#910cc326d17c6378065176497efb2ecb335a8815"
-  integrity sha512-76I/LfFShpL4lhqVqm7Y6ZjoUFhNSoeB9jK+2PU7GlwNiv2x+L6CgVcW76zmfVeCKv4g361Z3ZFbsSBkPkyKgA==
+"@moonjot/moon@^0.1.85":
+  version "0.1.85"
+  resolved "https://registry.yarnpkg.com/@moonjot/moon/-/moon-0.1.85.tgz#3ab3bf5bd256f503c66988624e9d32cbae00f54d"
+  integrity sha512-OMTicfiwTYjPehrtjdTR3OY1qGSL5UnL6BLV6BetBUkRWrBi5WJowC7mOvPfL/Uenky6tmgo26gN48yLL+Jrnw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
