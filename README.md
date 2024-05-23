@@ -1,10 +1,17 @@
-# Moon Plugin Sample - Plugin Development
+# Moon Ai via Mention
 
 <span class="badge-npmversion"><a href="https://npmjs.org/package/@moonjot/moon-ai-prompt-plugin" title="View this project on NPM"><img src="https://img.shields.io/npm/v/@moonjot/moon-ai-prompt-plugin.svg" alt="NPM version" /></a></span>
 <span class="badge-npmdownloads"><a href="https://npmjs.org/package/@moonjot/moon-ai-prompt-plugin" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/@moonjot/moon-ai-prompt-plugin.svg" alt="NPM downloads" /></a></span>
 
 
-Moon Jot is base on a plugin system that make easy to develop your own integration and workflows
+# Concept
+
+Use `:ai:` to trigger ai flows.
+
+# TODO
+
+- [ ] Add shortcut maybe
+- [ ] Add template for instructions, like author or content and maybe {{content}} for text editor content
 
 # Develop on Moon
 
