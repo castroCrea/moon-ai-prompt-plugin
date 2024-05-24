@@ -16,6 +16,7 @@ interface AiPromptsSettingsDescription extends PluginSettingsDescription {
     required: boolean
     label: string
     description: string
+    default: string
   }
 }
 
@@ -58,7 +59,8 @@ export default class extends MoonPlugin {
       type: 'shortcut',
       required: true,
       label: 'Configure shortcut',
-      description: ''
+      description: '',
+      default: ''
     }
   }
 

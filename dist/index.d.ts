@@ -12,6 +12,7 @@ interface AiPromptsSettingsDescription extends PluginSettingsDescription {
         required: boolean;
         label: string;
         description: string;
+        default: string;
     };
 }
 interface AiPromptsSettings extends MoonPluginSettings {

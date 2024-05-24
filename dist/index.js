@@ -44,7 +44,8 @@ class default_1 extends moon_1.MoonPlugin {
                 type: 'shortcut',
                 required: true,
                 label: 'Configure shortcut',
-                description: ''
+                description: '',
+                default: ''
             }
         };
         this.settings = {
