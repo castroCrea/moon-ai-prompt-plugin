@@ -30,7 +30,7 @@ exports.AI_APIS = {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 // @ts-expect-error output is a string but here type doesn't work
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                editor.commands.insertContent((_b = (_a = item.output) === null || _a === void 0 ? void 0 : _a.replaceAll('${response}', response)) !== null && _b !== void 0 ? _b : response);
+                editor.commands.insertContentAt(editor.state.doc.content.size, (_b = (_a = item.output) === null || _a === void 0 ? void 0 : _a.replaceAll('${response}', response)) !== null && _b !== void 0 ? _b : response);
                 setContext(Object.assign(Object.assign({}, context), { loader: false }));
             }).catch(({ error }) => {
                 setContext(Object.assign(Object.assign({}, context), { error: JSON.stringify(error), loader: false }));
@@ -81,7 +81,7 @@ exports.AI_APIS = {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 // @ts-expect-error output is a string but here type doesn't work
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                editor.commands.insertContent((_c = (_b = item.output) === null || _b === void 0 ? void 0 : _b.replaceAll('${response}', response)) !== null && _c !== void 0 ? _c : response);
+                editor.commands.insertContentAt(editor.state.doc.content.size, (_c = (_b = item.output) === null || _b === void 0 ? void 0 : _b.replaceAll('${response}', response)) !== null && _c !== void 0 ? _c : response);
                 setContext(Object.assign(Object.assign({}, context), { loader: false }));
             }).catch(({ error }) => {
                 setContext(Object.assign(Object.assign({}, context), { error: JSON.stringify(error), loader: false }));
@@ -123,7 +123,7 @@ exports.AI_APIS = {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 // @ts-expect-error output is a string but here type doesn't work
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                editor.commands.insertContent((_c = (_b = item.output) === null || _b === void 0 ? void 0 : _b.replaceAll('${response}', response)) !== null && _c !== void 0 ? _c : response);
+                editor.commands.insertContentAt(editor.state.doc.content.size, (_c = (_b = item.output) === null || _b === void 0 ? void 0 : _b.replaceAll('${response}', response)) !== null && _c !== void 0 ? _c : response);
                 setContext(Object.assign(Object.assign({}, context), { loader: false }));
             }).catch(({ error }) => {
                 setContext(Object.assign(Object.assign({}, context), { error: JSON.stringify(error), loader: false }));
@@ -165,7 +165,7 @@ exports.AI_APIS = {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                 // @ts-expect-error output is a string but here type doesn't work
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                editor.commands.insertContent((_c = (_b = item.output) === null || _b === void 0 ? void 0 : _b.replaceAll('${response}', response)) !== null && _c !== void 0 ? _c : response);
+                editor.commands.insertContentAt(editor.state.doc.content.size, (_c = (_b = item.output) === null || _b === void 0 ? void 0 : _b.replaceAll('${response}', response)) !== null && _c !== void 0 ? _c : response);
                 setContext(Object.assign(Object.assign({}, context), { loader: false }));
             }).catch(({ error }) => {
                 setContext(Object.assign(Object.assign({}, context), { error: JSON.stringify(error), loader: false }));

@@ -41,7 +41,7 @@ export const AI_APIS: Record<'ollama' | 'gemini' | 'openai' | 'mistral', { callb
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         // @ts-expect-error output is a string but here type doesn't work
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        editor.commands.insertContent(item.output?.replaceAll('${response}', response) ?? response)
+        editor.commands.insertContentAt(editor.state.doc.content.size, item.output?.replaceAll('${response}', response) ?? response)
         setContext({ ...context, loader: false })
       }).catch(({ error }) => {
         setContext({ ...context, error: JSON.stringify(error), loader: false })
@@ -105,7 +105,7 @@ export const AI_APIS: Record<'ollama' | 'gemini' | 'openai' | 'mistral', { callb
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         // @ts-expect-error output is a string but here type doesn't work
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        editor.commands.insertContent(item.output?.replaceAll('${response}', response) ?? response)
+        editor.commands.insertContentAt(editor.state.doc.content.size, item.output?.replaceAll('${response}', response) ?? response)
         setContext({ ...context, loader: false })
       }).catch(({ error }) => {
         setContext({ ...context, error: JSON.stringify(error), loader: false })
@@ -159,7 +159,7 @@ export const AI_APIS: Record<'ollama' | 'gemini' | 'openai' | 'mistral', { callb
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         // @ts-expect-error output is a string but here type doesn't work
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        editor.commands.insertContent(item.output?.replaceAll('${response}', response) ?? response)
+        editor.commands.insertContentAt(editor.state.doc.content.size, item.output?.replaceAll('${response}', response) ?? response)
         setContext({ ...context, loader: false })
       }).catch(({ error }) => {
         setContext({ ...context, error: JSON.stringify(error), loader: false })
@@ -213,7 +213,7 @@ export const AI_APIS: Record<'ollama' | 'gemini' | 'openai' | 'mistral', { callb
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         // @ts-expect-error output is a string but here type doesn't work
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        editor.commands.insertContent(item.output?.replaceAll('${response}', response) ?? response)
+        editor.commands.insertContentAt(editor.state.doc.content.size, item.output?.replaceAll('${response}', response) ?? response)
         setContext({ ...context, loader: false })
       }).catch(({ error }) => {
         setContext({ ...context, error: JSON.stringify(error), loader: false })

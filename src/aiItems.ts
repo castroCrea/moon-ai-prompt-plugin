@@ -7,14 +7,14 @@ export const AIs: Array<{ title: string, model: string, prompt?: string, output?
     type: 'ollama',
     model: 'llama3',
     prompt: '{{content}}',
-    output: '---\nAI:\n${response}\n\n---\n'
+    output: '---\nAI:\n${response}\n\n---\n<br/>'
   },
   {
     title: 'Ollama - Mistral',
     type: 'ollama',
     model: 'mistral',
     prompt: '{{content}}',
-    output: '---\nAI:\n${response}\n\n---\n'
+    output: '---\nAI:\n${response}\n\n---\n<br/>'
   },
   {
     title: 'Gemini - Google',
@@ -22,7 +22,7 @@ export const AIs: Array<{ title: string, model: string, prompt?: string, output?
     model: 'gemini-pro',
     token: '',
     prompt: '{{content}}',
-    output: '---\nAI:\n${response}\n\n---\n'
+    output: '---\nAI:\n${response}\n\n---\n<br/>'
   },
   {
     title: 'ChatGPT - 3.5 Turbo',
@@ -30,7 +30,7 @@ export const AIs: Array<{ title: string, model: string, prompt?: string, output?
     model: 'gpt-3.5-turbo',
     token: '',
     prompt: '{{content}}',
-    output: '---\nAI:\n${response}\n\n---\n'
+    output: '---\nAI:\n${response}\n\n---\n<br/>'
   },
   {
     title: 'ChatGPT - 4',
@@ -38,7 +38,7 @@ export const AIs: Array<{ title: string, model: string, prompt?: string, output?
     model: 'gpt-4',
     token: '',
     prompt: '{{content}}',
-    output: '---\nAI:\n${response}\n\n---\n'
+    output: '---\nAI:\n${response}\n\n---\n<br/>'
   },
   {
     title: 'ChatGPT - 4o',
@@ -46,7 +46,7 @@ export const AIs: Array<{ title: string, model: string, prompt?: string, output?
     model: 'gpt-4o',
     token: '',
     prompt: '{{content}}',
-    output: '---\nAI:\n${response}\n\n---\n'
+    output: '---\nAI:\n${response}\n\n---\n<br/>'
   },
   {
     title: 'Mistral - Large',
@@ -54,6 +54,6 @@ export const AIs: Array<{ title: string, model: string, prompt?: string, output?
     model: 'mistral-large-latest',
     token: '',
     prompt: '{{content}}',
-    output: '---\nAI:\n${response}\n\n---\n'
+    output: '---\nAI:\n${response}\n\n---\n<br/>'
   }
 ]
