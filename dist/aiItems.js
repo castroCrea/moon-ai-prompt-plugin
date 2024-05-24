@@ -47,6 +47,14 @@ exports.AIs = [
         token: '',
         prompt: '{{content}}',
         output: '---\nAI:\n${response}\n\n---\n'
+    },
+    {
+        title: 'Mistral - Large',
+        type: 'mistral',
+        model: 'mistral-large-latest',
+        token: '',
+        prompt: '{{content}}',
+        output: '---\nAI:\n${response}\n\n---\n'
     }
 ];
 //# sourceMappingURL=aiItems.js.map

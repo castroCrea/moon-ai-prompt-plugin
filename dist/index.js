@@ -50,6 +50,7 @@ class default_1 extends moon_1.MoonPlugin {
                     saveSettings({ key: 'items', value: JSON.stringify(uniqBy({ array: [...JSON.parse(this.settings.items ? this.settings.items : '[]'), ...aiItems_1.AIs], key: 'title' }), null, 2) });
                 }
             }];
+        // shortcuts: AIs.map(ai => ({...ai, callback: AI_APIS[ai.type].callback.toString() }))
         this.mention = () => {
             const mentions = [];
             mentions.push({
