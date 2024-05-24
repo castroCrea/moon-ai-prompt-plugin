@@ -1,4 +1,4 @@
-import { MoonPlugin, type MoonPluginConstructorProps, type MoonPluginSettings, type PluginSettingsDescription, type PluginMentionItem } from '@moonjot/moon';
+import { MoonPlugin, type MoonPluginConstructorProps, type MoonPluginSettings, type PluginSettingsDescription, type PluginMentionItem, type EndpointCallbackItem } from '@moonjot/moon';
 interface AiPromptsSettingsDescription extends PluginSettingsDescription {
     items: {
         type: 'text';
@@ -9,6 +9,7 @@ interface AiPromptsSettingsDescription extends PluginSettingsDescription {
     };
 }
 interface AiPromptsSettings extends MoonPluginSettings {
+    items: string;
 }
 export default class extends MoonPlugin {
     name: string;
@@ -17,6 +18,7 @@ export default class extends MoonPlugin {
     settings: AiPromptsSettings;
     private readonly log;
     constructor(props?: MoonPluginConstructorProps<AiPromptsSettings>);
+    endpointCallbacks: EndpointCallbackItem[];
     mention: () => PluginMentionItem[];
 }
 export {};

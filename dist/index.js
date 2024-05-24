@@ -13,24 +13,43 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const moon_1 = require("@moonjot/moon");
 const aiApis_1 = require("./aiApis");
 const aiItems_1 = require("./aiItems");
+const uniqBy = ({ array, key }) => {
+    const seen = new Set();
+    return array.filter((item) => {
+        const keyValue = item[key];
+        if (seen.has(keyValue)) {
+            return false;
+        }
+        else {
+            seen.add(keyValue);
+            return true;
+        }
+    });
+};
 class default_1 extends moon_1.MoonPlugin {
     constructor(props) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         super(props);
         this.name = 'Ai Prompts';
-        this.logo = '<svg width="16" height="16" viewBox="0 0 16 16" role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M6 21l15 -15l-3 -3l-15 15l3 3"></path><path d="M15 6l3 3"></path><path d="M9 3a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path><path d="M19 13a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path></svg></svg>';
+        this.logo = '<svg role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M6 21l15 -15l-3 -3l-15 15l3 3"></path><path d="M15 6l3 3"></path><path d="M9 3a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path><path d="M19 13a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path></svg></svg>';
         this.settingsDescription = {
             items: {
                 type: 'text',
                 required: true,
                 label: 'Configure your AIs',
-                description: 'Use ${response} in output, to place the response at this spot. Check out the doc here [](). ',
+                description: 'Use ${response} in output, to place the response at this spot. Also check out the doc here []().',
                 default: JSON.stringify(aiItems_1.AIs, null, 2)
             }
         };
         this.settings = {
             items: JSON.stringify(aiItems_1.AIs, null, 2)
         };
+        this.endpointCallbacks = [{
+                endpoint: 'moon-ai-prompt-plugin/update',
+                callback: ({ saveSettings }) => {
+                    saveSettings({ key: 'items', value: JSON.stringify(uniqBy({ array: [...JSON.parse(this.settings.items ? this.settings.items : '[]'), ...aiItems_1.AIs], key: 'title' }), null, 2) });
+                }
+            }];
         this.mention = () => {
             const mentions = [];
             mentions.push({
@@ -39,7 +58,9 @@ class default_1 extends moon_1.MoonPlugin {
                 htmlClass: 'mention_collections',
                 allowSpaces: true,
                 getListItem: () => __awaiter(this, void 0, void 0, function* () {
-                    return aiItems_1.AIs.map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() })));
+                    var _a;
+                    (_a = this.log) === null || _a === void 0 ? void 0 : _a.call(this, JSON.stringify(JSON.parse(this.settings.items ? this.settings.items : '[]').map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() })))));
+                    return JSON.parse(this.settings.items ? this.settings.items : '[]').map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() })));
                 }),
                 onSelectItem: (props) => {
                     // @ts-expect-error this is to be handle easier
@@ -52,9 +73,20 @@ class default_1 extends moon_1.MoonPlugin {
         };
         if (!props)
             return;
-        if (props.settings)
-            this.settings = Object.assign(Object.assign({}, props.settings), { items: JSON.stringify(Object.assign(Object.assign({}, aiItems_1.AIs), JSON.parse(props.settings.item)), null, 2) });
+        if (props.settings) {
+            this.settings = Object.assign(Object.assign({}, props.settings), { items: JSON.stringify(uniqBy({ array: [...JSON.parse(props.settings.items ? props.settings.items : '[]'), ...aiItems_1.AIs], key: 'title' }), null, 2) });
+        }
         this.log = props.helpers.moonLog;
+        this.settingsButtons = [
+            {
+                type: 'button',
+                callback: () => {
+                    window.open('moonjot://moon-ai-prompt-plugin/update', '_blank');
+                },
+                label: 'Update AI configuration',
+                description: 'If you want to reset everything, delete the configuration and click the button.'
+            }
+        ];
     }
 }
 exports.default = default_1;
