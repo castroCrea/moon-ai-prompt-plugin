@@ -37,7 +37,7 @@ class default_1 extends moon_1.MoonPlugin {
                 type: 'text',
                 required: true,
                 label: 'Configure your AIs',
-                description: 'Use ${response} in output, to place the response at this spot. Also check out the doc here []().',
+                description: 'To integrate the response into your output, simply use ${response} at the desired location. For additional information, please refer to the [documentation here](https://github.com/castroCrea/moon-ai-prompt-plugin/blob/0ec7935b190a477c57fa15b4158b7ce11d529183/README.md).',
                 default: JSON.stringify(aiItems_1.AIs, null, 2)
             }
         };
