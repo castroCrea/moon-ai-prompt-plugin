@@ -1,5 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 import { MoonPlugin, type MoonPluginConstructorProps, type MoonPluginSettings, type PluginSettingsDescription, type PluginMentionItem } from '@moonjot/moon'
+import { AI_APIS } from './aiApis'
+import { AIs } from './aiItems'
 
 interface AiPromptsSettingsDescription extends PluginSettingsDescription {
   items: {
@@ -13,60 +15,6 @@ interface AiPromptsSettingsDescription extends PluginSettingsDescription {
 
 interface AiPromptsSettings extends MoonPluginSettings {
 }
-
-const AI_APIS: Record<'ollama', { callback: PluginMentionItem['onSelectItem'] }> = {
-  ollama: {
-    callback: (
-      { item, context, setContext, editor, deleteMentionPlaceholder }) => {
-      deleteMentionPlaceholder()
-
-      const markdown = editor.storage.markdown.getMarkdown()
-
-      // eslint-disable-next-line @typescript-eslint/no-base-to-string, @typescript-eslint/restrict-template-expressions
-      const prompt = `${item.instruction ? `${item.instruction}` : ''}\n${markdown}`
-
-      const body = JSON.stringify({
-        model: 'llama3',
-        prompt,
-        stream: false
-      })
-
-      setContext({ ...context, loader: true })
-
-      // @ts-expect-error this will be stringified and await and typing is prohibited
-      const handleResponse = (r) => r.json()
-
-      fetch('http://localhost:11434/api/generate', {
-        headers: {
-          'content-type': 'application/json'
-        },
-        body,
-        method: 'POST'
-      }).then(handleResponse).then(({ response }) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        // @ts-expect-error output is a string but here type doesn't work
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        editor.commands.insertContent(item.output?.replaceAll('${response}', response) ?? response)
-        setContext({ ...context, loader: false })
-      }).catch(({ error }) => {
-        setContext({ ...context, error: JSON.stringify(error), loader: false })
-      })
-    }
-  }
-}
-
-const AIs: Array<{ title: string, instruction?: string, output?: string, type: keyof typeof AI_APIS }> = [{
-  title: 'Ollama - Llama3',
-  type: 'ollama',
-  instruction: '',
-  output: '---\nAI:\n${response}\n\n---\n'
-},
-{
-  title: 'Ollama - Mistral',
-  type: 'ollama',
-  instruction: '',
-  output: '---\nAI:\n${response}\n\n---\n'
-}]
 
 export default class extends MoonPlugin {
   name: string = 'Ai Prompts'

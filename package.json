@@ -4,7 +4,9 @@
   "description": "Moon sample plugin for Moon",
   "main": "./dist/index.js",
   "dependencies": {
-    "@moonjot/moon": "^0.1.85"
+    "@moonjot/moon": "^0.1.86",
+    "@moonjot/moon-utils": "^0.0.9",
+    "openai": "^4.47.1"
   },
   "repository": {
     "type": "git",

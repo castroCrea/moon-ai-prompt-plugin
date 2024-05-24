@@ -11,8 +11,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable no-template-curly-in-string */
 const moon_1 = require("@moonjot/moon");
-const aiApis_1 = require("./aiApis");
-const aiItems_1 = require("./aiItems");
+const aiApis_1 = require("aiApis");
+const AIs = [{
+        title: 'Ollama - Llama3',
+        type: 'ollama',
+        instruction: '',
+        output: '---\nAI:\n${response}\n\n---\n'
+    },
+    {
+        title: 'Ollama - Mistral',
+        type: 'ollama',
+        instruction: '',
+        output: '---\nAI:\n${response}\n\n---\n'
+    }];
 class default_1 extends moon_1.MoonPlugin {
     constructor(props) {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -25,11 +36,11 @@ class default_1 extends moon_1.MoonPlugin {
                 required: true,
                 label: 'Configure your AIs',
                 description: 'Use ${response} in output, to place the response at this spot. Check out the doc here [](). ',
-                default: JSON.stringify(aiItems_1.AIs, null, 2)
+                default: JSON.stringify(AIs, null, 2)
             }
         };
         this.settings = {
-            items: JSON.stringify(aiItems_1.AIs, null, 2)
+            items: JSON.stringify(AIs, null, 2)
         };
         this.mention = () => {
             const mentions = [];
@@ -39,7 +50,7 @@ class default_1 extends moon_1.MoonPlugin {
                 htmlClass: 'mention_collections',
                 allowSpaces: true,
                 getListItem: () => __awaiter(this, void 0, void 0, function* () {
-                    return aiItems_1.AIs.map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() })));
+                    return AIs.map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() })));
                 }),
                 onSelectItem: (props) => {
                     // @ts-expect-error this is to be handle easier
@@ -53,9 +64,9 @@ class default_1 extends moon_1.MoonPlugin {
         if (!props)
             return;
         if (props.settings)
-            this.settings = Object.assign(Object.assign({}, props.settings), { items: JSON.stringify(Object.assign(Object.assign({}, aiItems_1.AIs), JSON.parse(props.settings.item)), null, 2) });
+            this.settings = Object.assign(Object.assign({}, props.settings), { items: JSON.stringify(Object.assign(Object.assign({}, AIs), JSON.parse(props.settings.item)), null, 2) });
         this.log = props.helpers.moonLog;
     }
 }
 exports.default = default_1;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index%20copy.js.map
