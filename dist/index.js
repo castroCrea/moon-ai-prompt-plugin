@@ -58,9 +58,7 @@ class default_1 extends moon_1.MoonPlugin {
                 htmlClass: 'mention_collections',
                 allowSpaces: true,
                 getListItem: () => __awaiter(this, void 0, void 0, function* () {
-                    var _a;
-                    (_a = this.log) === null || _a === void 0 ? void 0 : _a.call(this, JSON.stringify(JSON.parse(this.settings.items ? this.settings.items : '[]').map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() })))));
-                    return JSON.parse(this.settings.items ? this.settings.items : '[]').map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() })));
+                    return JSON.parse(this.settings.items ? this.settings.items : '[]').map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() }))).filter(ai => ai.token !== '');
                 }),
                 onSelectItem: (props) => {
                     // @ts-expect-error this is to be handle easier

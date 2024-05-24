@@ -23,6 +23,30 @@ exports.AIs = [
         token: '',
         prompt: '{{content}}',
         output: '---\nAI:\n${response}\n\n---\n'
+    },
+    {
+        title: 'ChatGPT - 3.5 Turbo',
+        type: 'openai',
+        model: 'gpt-3.5-turbo',
+        token: '',
+        prompt: '{{content}}',
+        output: '---\nAI:\n${response}\n\n---\n'
+    },
+    {
+        title: 'ChatGPT - 4',
+        type: 'openai',
+        model: 'gpt-4',
+        token: '',
+        prompt: '{{content}}',
+        output: '---\nAI:\n${response}\n\n---\n'
+    },
+    {
+        title: 'ChatGPT - 4o',
+        type: 'openai',
+        model: 'gpt-4o',
+        token: '',
+        prompt: '{{content}}',
+        output: '---\nAI:\n${response}\n\n---\n'
     }
 ];
 //# sourceMappingURL=aiItems.js.map
