@@ -88,6 +88,8 @@ export default class extends MoonPlugin {
     }
   }] as EndpointCallbackItem[]
 
+  // shortcuts: AIs.map(ai => ({...ai, callback: AI_APIS[ai.type].callback.toString() }))
+
   mention = (): PluginMentionItem[] => {
     const mentions: PluginMentionItem[] = []
 

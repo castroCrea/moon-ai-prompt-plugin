@@ -14,9 +14,9 @@ In your settings you got this kind of item:
 ```json
   {
     "title": "ChatGPT - 4",                        // You can change that as you want
-    "type": "openai",                              // openai | gemini | ollama
+    "type": "openai",                              // openai | gemini | ollama | mistral
     "model": "gpt-4",                              // depending on the type refer to official ai doc
-    "token": "",                                   // token if needed (openai | gemini)
+    "token": "",                                   // token if needed (openai | gemini | mistral)
     "prompt": "{{content}}",                       // you can customize that as you wish {{content}} is the content of the Launcher
     "output": "---\nAI:\n${response}\n\n---\n"     // you can customize how the answer will be formatted before be inserted in the text editor
   }
@@ -51,6 +51,7 @@ Ask me if you want more
 - [openai](https://platform.openai.com/docs/api-reference/making-requests)
 - [gemini](https://ai.google.dev/gemini-api/docs/models/gemini?hl=fr)
 - [ollama](https://ollama.com/)
+- [mistral](https://docs.mistral.ai/capabilities/completion/)
 
 
 
