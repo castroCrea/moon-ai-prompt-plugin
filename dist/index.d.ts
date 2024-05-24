@@ -7,6 +7,12 @@ interface AiPromptsSettingsDescription extends PluginSettingsDescription {
         description: string;
         default: string;
     };
+    shortcut: {
+        type: 'shortcut';
+        required: boolean;
+        label: string;
+        description: string;
+    };
 }
 interface AiPromptsSettings extends MoonPluginSettings {
     items: string;

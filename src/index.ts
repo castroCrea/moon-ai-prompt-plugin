@@ -11,6 +11,12 @@ interface AiPromptsSettingsDescription extends PluginSettingsDescription {
     description: string
     default: string
   }
+  shortcut: {
+    type: 'shortcut'
+    required: boolean
+    label: string
+    description: string
+  }
 }
 
 interface AiPromptsSettings extends MoonPluginSettings {
@@ -47,11 +53,18 @@ export default class extends MoonPlugin {
       label: 'Configure your AIs',
       description: 'To integrate the response into your output, simply use ${response} at the desired location. For additional information, please refer to the [documentation here](https://github.com/castroCrea/moon-ai-prompt-plugin/blob/0ec7935b190a477c57fa15b4158b7ce11d529183/README.md).',
       default: JSON.stringify(AIs, null, 2)
+    },
+    shortcut: {
+      type: 'shortcut',
+      required: true,
+      label: 'Configure shortcut',
+      description: ''
     }
   }
 
   settings: AiPromptsSettings = {
-    items: JSON.stringify(AIs, null, 2)
+    items: JSON.stringify(AIs, null, 2),
+    shortcut: ''
   }
 
   private readonly log: any
@@ -96,6 +109,7 @@ export default class extends MoonPlugin {
     mentions.push({
       name: 'ai_prompts',
       char: ':ai:',
+      shortcut: this.settings.shortcut,
       htmlClass: 'mention_collections',
       allowSpaces: true,
       getListItem: async () => {

@@ -39,10 +39,17 @@ class default_1 extends moon_1.MoonPlugin {
                 label: 'Configure your AIs',
                 description: 'To integrate the response into your output, simply use ${response} at the desired location. For additional information, please refer to the [documentation here](https://github.com/castroCrea/moon-ai-prompt-plugin/blob/0ec7935b190a477c57fa15b4158b7ce11d529183/README.md).',
                 default: JSON.stringify(aiItems_1.AIs, null, 2)
+            },
+            shortcut: {
+                type: 'shortcut',
+                required: true,
+                label: 'Configure shortcut',
+                description: ''
             }
         };
         this.settings = {
-            items: JSON.stringify(aiItems_1.AIs, null, 2)
+            items: JSON.stringify(aiItems_1.AIs, null, 2),
+            shortcut: ''
         };
         this.endpointCallbacks = [{
                 endpoint: 'moon-ai-prompt-plugin/update',
@@ -56,6 +63,7 @@ class default_1 extends moon_1.MoonPlugin {
             mentions.push({
                 name: 'ai_prompts',
                 char: ':ai:',
+                shortcut: this.settings.shortcut,
                 htmlClass: 'mention_collections',
                 allowSpaces: true,
                 getListItem: () => __awaiter(this, void 0, void 0, function* () {
