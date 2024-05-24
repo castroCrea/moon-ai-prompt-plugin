@@ -8,10 +8,55 @@
 
 Use `:ai:` to trigger ai flows.
 
+## Build items property
+
+In your settings you got this kind of item:
+```json
+  {
+    "title": "ChatGPT - 4",                        // You can change that as you want
+    "type": "openai",                              // openai | gemini | ollama
+    "model": "gpt-4",                              // depending on the type refer to official ai doc
+    "token": "",                                   // token if needed (openai | gemini)
+    "prompt": "{{content}}",                       // you can customize that as you wish {{content}} is the content of the Launcher
+    "output": "---\nAI:\n${response}\n\n---\n"     // you can customize how the answer will be formatted before be inserted in the text editor
+  }
+```
+
+### output
+
+Feel free to customize them, for example change the output
+
+```json
+  "output": "The GPT 4 AI answer with : \n${response}\n"
+```
+
+### prompt
+
+Feel free to customize them, for example change the prompt like
+```json
+    "prompt": "Answer to this prompt only in French: '{{content}}'",
+```
+
+You can also add `context`
+
+```json
+    "prompt": "Answer to this prompt only in French: 'Question : {{content}}\n Article content: {{source.text}}'",
+```
+
+
+## There is only 3 type of AI integration available for now
+
+Ask me if you want more
+
+- [openai](https://platform.openai.com/docs/api-reference/making-requests)
+- [gemini](https://ai.google.dev/gemini-api/docs/models/gemini?hl=fr)
+- [ollama](https://ollama.com/)
+
+
+
 # TODO
 
 - [ ] Add shortcut maybe
-- [ ] Add template for instructions, like author or content and maybe {{content}} for text editor content
 
 # Develop on Moon
 
