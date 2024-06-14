@@ -48,19 +48,19 @@ export default class extends MoonPlugin {
   logo: string = '<svg role="img"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M6 21l15 -15l-3 -3l-15 15l3 3"></path><path d="M15 6l3 3"></path><path d="M9 3a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path><path d="M19 13a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path></svg></svg>'
 
   settingsDescription: AiPromptsSettingsDescription = {
+    shortcut: {
+      type: 'shortcut',
+      required: true,
+      label: 'Configure shortcut',
+      description: 'Shortcut to trigger AI.',
+      default: 'Alt+Enter'
+    },
     items: {
       type: 'text',
       required: true,
       label: 'Configure your AIs',
       description: 'To integrate the response into your output, simply use ${response} at the desired location. For additional information, please refer to the [documentation here](https://github.com/castroCrea/moon-ai-prompt-plugin/blob/0ec7935b190a477c57fa15b4158b7ce11d529183/README.md).',
       default: JSON.stringify(AIs, null, 2)
-    },
-    shortcut: {
-      type: 'shortcut',
-      required: true,
-      label: 'Configure shortcut',
-      description: '',
-      default: ''
     }
   }
 
