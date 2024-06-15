@@ -41,21 +41,53 @@ class default_1 extends moon_1.MoonPlugin {
                 default: 'Alt+Enter'
             },
             items: {
-                type: 'text',
+                type: 'json',
                 required: true,
                 label: 'Configure your AIs',
                 description: 'To integrate the response into your output, simply use ${response} at the desired location. For additional information, please refer to the [documentation here](https://github.com/castroCrea/moon-ai-prompt-plugin/blob/0ec7935b190a477c57fa15b4158b7ce11d529183/README.md).',
-                default: JSON.stringify(aiItems_1.AIs, null, 2)
+                default: aiItems_1.AIs,
+                dataDescription: [
+                    {
+                        title: 'Title',
+                        type: 'string',
+                        key: 'title'
+                    },
+                    {
+                        title: 'Model',
+                        type: 'string',
+                        key: 'model'
+                    },
+                    {
+                        title: 'Prompt',
+                        type: 'template',
+                        key: 'prompt'
+                    },
+                    {
+                        title: 'Output',
+                        type: 'string',
+                        key: 'output'
+                    },
+                    {
+                        title: 'Type',
+                        type: 'string',
+                        key: 'type'
+                    },
+                    {
+                        title: 'Token',
+                        type: 'string',
+                        key: 'token'
+                    }
+                ]
             }
         };
         this.settings = {
-            items: JSON.stringify(aiItems_1.AIs, null, 2),
-            shortcut: ''
+            shortcut: '',
+            items: aiItems_1.AIs
         };
         this.endpointCallbacks = [{
                 endpoint: 'moon-ai-prompt-plugin/update',
                 callback: ({ saveSettings }) => {
-                    saveSettings({ key: 'items', value: JSON.stringify(uniqBy({ array: [...JSON.parse(this.settings.items ? this.settings.items : '[]'), ...aiItems_1.AIs], key: 'title' }), null, 2) });
+                    saveSettings({ key: 'items', value: uniqBy({ array: [...this.settings.items ? this.settings.items : [], ...aiItems_1.AIs], key: 'title' }) });
                 }
             }];
         // shortcuts: AIs.map(ai => ({...ai, callback: AI_APIS[ai.type].callback.toString() }))
@@ -68,7 +100,7 @@ class default_1 extends moon_1.MoonPlugin {
                 htmlClass: 'mention_collections',
                 allowSpaces: true,
                 getListItem: () => __awaiter(this, void 0, void 0, function* () {
-                    return JSON.parse(this.settings.items ? this.settings.items : '[]').map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() }))).filter(ai => ai.token !== '');
+                    return (this.settings.items ? this.settings.items : []).map(ai => (Object.assign(Object.assign({}, ai), { pluginName: 'ai_prompts', callback: aiApis_1.AI_APIS[ai.type].callback.toString() }))).filter(ai => ai.token !== '');
                 }),
                 onSelectItem: (props) => {
                     // @ts-expect-error this is to be handle easier
@@ -82,7 +114,7 @@ class default_1 extends moon_1.MoonPlugin {
         if (!props)
             return;
         if (props.settings) {
-            this.settings = Object.assign(Object.assign({}, props.settings), { items: JSON.stringify(uniqBy({ array: [...JSON.parse(props.settings.items ? props.settings.items : '[]'), ...aiItems_1.AIs], key: 'title' }), null, 2) });
+            this.settings = Object.assign(Object.assign({}, props.settings), { items: uniqBy({ array: [...(props.settings.items ? props.settings.items : []), ...aiItems_1.AIs], key: 'title' }) });
         }
         this.log = props.helpers.moonLog;
         this.settingsButtons = [

@@ -5,11 +5,16 @@ import { AIs } from './aiItems'
 
 interface AiPromptsSettingsDescription extends PluginSettingsDescription {
   items: {
-    type: 'text'
+    type: 'json'
     required: boolean
     label: string
     description: string
-    default: string
+    default?: Array<Record<string, string>>
+    dataDescription: Array<{
+      title: string
+      type: 'string' | 'template'
+      key: string
+    }>
   }
   shortcut: {
     type: 'shortcut'
@@ -21,7 +26,8 @@ interface AiPromptsSettingsDescription extends PluginSettingsDescription {
 }
 
 interface AiPromptsSettings extends MoonPluginSettings {
-  items: string
+  shortcut: string
+  items: Array<Record<string, string>>
 }
 
 const uniqBy = ({
@@ -56,17 +62,49 @@ export default class extends MoonPlugin {
       default: 'Alt+Enter'
     },
     items: {
-      type: 'text',
+      type: 'json',
       required: true,
       label: 'Configure your AIs',
       description: 'To integrate the response into your output, simply use ${response} at the desired location. For additional information, please refer to the [documentation here](https://github.com/castroCrea/moon-ai-prompt-plugin/blob/0ec7935b190a477c57fa15b4158b7ce11d529183/README.md).',
-      default: JSON.stringify(AIs, null, 2)
+      default: AIs,
+      dataDescription: [
+        {
+          title: 'Title',
+          type: 'string',
+          key: 'title'
+        },
+        {
+          title: 'Model',
+          type: 'string',
+          key: 'model'
+        },
+        {
+          title: 'Prompt',
+          type: 'template',
+          key: 'prompt'
+        },
+        {
+          title: 'Output',
+          type: 'string',
+          key: 'output'
+        },
+        {
+          title: 'Type',
+          type: 'string',
+          key: 'type'
+        },
+        {
+          title: 'Token',
+          type: 'string',
+          key: 'token'
+        }
+      ]
     }
   }
 
   settings: AiPromptsSettings = {
-    items: JSON.stringify(AIs, null, 2),
-    shortcut: ''
+    shortcut: '',
+    items: AIs
   }
 
   private readonly log: any
@@ -79,7 +117,7 @@ export default class extends MoonPlugin {
     if (props.settings) {
       this.settings = {
         ...props.settings,
-        items: JSON.stringify(uniqBy({ array: [...JSON.parse(props.settings.items ? props.settings.items : '[]'), ...AIs], key: 'title' }), null, 2)
+        items: uniqBy({ array: [...(props.settings.items ? props.settings.items as any[] : []), ...AIs], key: 'title' })
       }
     }
     this.log = props.helpers.moonLog
@@ -99,7 +137,7 @@ export default class extends MoonPlugin {
   endpointCallbacks = [{
     endpoint: 'moon-ai-prompt-plugin/update',
     callback: ({ saveSettings }) => {
-      saveSettings({ key: 'items', value: JSON.stringify(uniqBy({ array: [...JSON.parse(this.settings.items ? this.settings.items : '[]'), ...AIs], key: 'title' }), null, 2) })
+      saveSettings({ key: 'items', value: uniqBy({ array: [...this.settings.items ? (this.settings.items as []) : [], ...AIs], key: 'title' }) })
     }
   }] as EndpointCallbackItem[]
 
@@ -115,7 +153,7 @@ export default class extends MoonPlugin {
       htmlClass: 'mention_collections',
       allowSpaces: true,
       getListItem: async () => {
-        return (JSON.parse(this.settings.items ? this.settings.items : '[]') as typeof AIs).map(ai => ({ ...ai, pluginName: 'ai_prompts', callback: AI_APIS[ai.type].callback.toString() })).filter(ai => ai.token !== '')
+        return ((this.settings.items ? this.settings.items : []) as typeof AIs).map(ai => ({ ...ai, pluginName: 'ai_prompts', callback: AI_APIS[ai.type].callback.toString() })).filter(ai => ai.token !== '')
       },
       onSelectItem: (props) => {
         // @ts-expect-error this is to be handle easier
