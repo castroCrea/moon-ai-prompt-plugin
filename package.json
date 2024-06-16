@@ -1,10 +1,10 @@
 {
   "name": "@moonjot/moon-ai-prompt-plugin",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Moon sample plugin for Moon",
   "main": "./dist/index.js",
   "dependencies": {
-    "@moonjot/moon": "^0.1.102",
+    "@moonjot/moon": "^0.1.106",
     "@moonjot/moon-utils": "^0.0.9",
     "openai": "^4.47.1"
   },
