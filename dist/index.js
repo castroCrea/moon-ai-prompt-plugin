@@ -69,8 +69,30 @@ class default_1 extends moon_1.MoonPlugin {
                     },
                     {
                         title: 'Type',
-                        type: 'string',
-                        key: 'type'
+                        type: 'selection',
+                        key: 'type',
+                        dataDescription: [
+                            {
+                                title: 'Ollama',
+                                value: 'ollama',
+                                key: 'ollama'
+                            },
+                            {
+                                title: 'Gemini',
+                                value: 'gemini',
+                                key: 'gemini'
+                            },
+                            {
+                                title: 'OpenAI',
+                                value: 'openai',
+                                key: 'openai'
+                            },
+                            {
+                                title: 'Mistral',
+                                value: 'mistral',
+                                key: 'mistral'
+                            }
+                        ]
                     },
                     {
                         title: 'Token',

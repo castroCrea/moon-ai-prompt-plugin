@@ -1,5 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
-import { MoonPlugin, type MoonPluginConstructorProps, type MoonPluginSettings, type PluginSettingsDescription, type PluginMentionItem, type EndpointCallbackItem } from '@moonjot/moon'
+import { MoonPlugin, type MoonPluginConstructorProps, type MoonPluginSettings, type PluginSettingsDescription, type PluginMentionItem, type EndpointCallbackItem, type PluginSettingsInputJsonDataDescriptionItem } from '@moonjot/moon'
 import { AI_APIS } from './aiApis'
 import { AIs } from './aiItems'
 
@@ -10,11 +10,7 @@ interface AiPromptsSettingsDescription extends PluginSettingsDescription {
     label: string
     description: string
     default?: Array<Record<string, string>>
-    dataDescription: Array<{
-      title: string
-      type: 'string' | 'template'
-      key: string
-    }>
+    dataDescription: PluginSettingsInputJsonDataDescriptionItem[]
   }
   shortcut: {
     type: 'shortcut'
@@ -90,8 +86,30 @@ export default class extends MoonPlugin {
         },
         {
           title: 'Type',
-          type: 'string',
-          key: 'type'
+          type: 'selection',
+          key: 'type',
+          dataDescription: [
+            {
+              title: 'Ollama',
+              value: 'ollama',
+              key: 'ollama'
+            },
+            {
+              title: 'Gemini',
+              value: 'gemini',
+              key: 'gemini'
+            },
+            {
+              title: 'OpenAI',
+              value: 'openai',
+              key: 'openai'
+            },
+            {
+              title: 'Mistral',
+              value: 'mistral',
+              key: 'mistral'
+            }
+          ]
         },
         {
           title: 'Token',

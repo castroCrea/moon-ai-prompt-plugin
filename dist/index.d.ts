@@ -1,4 +1,4 @@
-import { MoonPlugin, type MoonPluginConstructorProps, type MoonPluginSettings, type PluginSettingsDescription, type PluginMentionItem, type EndpointCallbackItem } from '@moonjot/moon';
+import { MoonPlugin, type MoonPluginConstructorProps, type MoonPluginSettings, type PluginSettingsDescription, type PluginMentionItem, type EndpointCallbackItem, type PluginSettingsInputJsonDataDescriptionItem } from '@moonjot/moon';
 interface AiPromptsSettingsDescription extends PluginSettingsDescription {
     items: {
         type: 'json';
@@ -6,11 +6,7 @@ interface AiPromptsSettingsDescription extends PluginSettingsDescription {
         label: string;
         description: string;
         default?: Array<Record<string, string>>;
-        dataDescription: Array<{
-            title: string;
-            type: 'string' | 'template';
-            key: string;
-        }>;
+        dataDescription: PluginSettingsInputJsonDataDescriptionItem[];
     };
     shortcut: {
         type: 'shortcut';
