@@ -53,8 +53,6 @@ export const AI_APIS: Record<'ollama' | 'gemini' | 'openai' | 'mistral', { callb
       { item, context, setContext, editor, deleteMentionPlaceholder, utils: { handleReplacingProperties, handleConditions, turnDate } }) => {
       deleteMentionPlaceholder()
 
-      console.log({ item })
-
       if (!item.token) {
         setContext({ ...context, error: 'No token provided', loader: false })
         return
